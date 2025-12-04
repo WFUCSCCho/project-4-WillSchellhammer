@@ -1,3 +1,13 @@
+/************************************************************************
+ * @file: SeparateChainingHashTable.java
+ * @description: Separate Chaining Hash Table implementation for any data type.
+ * Hash table is stored as a LinkedList, and Separate Chains are stored as LinkedLists.
+ * Hashing strategy: Hashing Key is the toString() of the data type. Rehashes when the number of items in the table exceeds the table size.
+ * @author: Will S
+ * @date: December 3, 2025
+ ************************************************************************/
+
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -38,7 +48,12 @@ public class SeparateChainingHashTable<AnyType> {
      * @param x the item to insert.
      */
     public void insert(AnyType x) {
-        // FINISH ME
+        int index = hash(x.toString(), theLists.length);
+        theLists[index].add(x);
+        currentSize++;
+        if (currentSize >= theLists.length) {
+            rehash();
+        }
     }
 
     /**
@@ -47,7 +62,9 @@ public class SeparateChainingHashTable<AnyType> {
      * @param x the item to remove.
      */
     public void remove(AnyType x) {
-        // FINISH ME
+        int index = hash(x.toString(), theLists.length);
+        theLists[index].remove(x);
+        currentSize--;
     }
 
     /**
@@ -57,14 +74,18 @@ public class SeparateChainingHashTable<AnyType> {
      * @return true if x is not found.
      */
     public boolean contains(AnyType x) {
-        // FINISH ME
+        int index = hash(x.toString(), theLists.length);
+        return theLists[index].contains(x);
     }
 
     /**
      * Make the hash table logically empty.
      */
     public void makeEmpty() {
-        // FINISH ME
+        for (int i = 0; i < theLists.length; i++) {
+            theLists[i] = new LinkedList<>();
+        }
+        currentSize = 0;
     }
 
     /**
@@ -88,7 +109,14 @@ public class SeparateChainingHashTable<AnyType> {
     }
 
     private void rehash() {
-        // FINISH ME
+        List<AnyType>[] temp = theLists.clone();
+        theLists = new LinkedList[nextPrime(theLists.length*2)];
+        makeEmpty();
+        for (List<AnyType> chain : temp) {
+            for (AnyType item : chain) {
+                insert(item);
+            }
+        }
     }
 
     private int myhash(AnyType x) {

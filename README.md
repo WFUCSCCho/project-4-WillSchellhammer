@@ -80,22 +80,21 @@ Using your favorite graphing software (e.g., MS Excel or Google Sheets), plot th
 each case. Take a screenshot of your graph and put them here by modifying this file, committing, and pushing
 it to this repository.
 
-Insertion, search, and deletion running time (already sorted):
+Insertion, search, and deletion running time (already sorted):![runtimeSorted.png](Images/runtimeSorted.png)
 
-![Firefly picture of a cat 86147](https://github.com/user-attachments/assets/8b2d008e-3011-4979-97b8-fa2e9886a01a)
+Insertion, search, and deletion running time (shuffled):![runtimeShuffled.png](Images/runtimeShuffled.png)
 
-
-Insertion, search, and deletion running time (shuffled):
-
-Insertion, search, and deletion running time (reversed):
+Insertion, search, and deletion running time (reversed):![runtimeReversed.png](Images/runtimeReversed.png)
 
 ## 5. **Document your Dataset and Results**
 Document the source of your dataset and any modifications you made to it. Describe the results of your analysis and 
 how it compares to the theoretical performance of the hash table operations.
 
-Dataset Source: // FINISH ME
-Dataset Modifications ("None" if unchanged): // FINISH ME
-Result Analysis: // FINISH ME
+Dataset Source: See [DataChanges.txt](DataChanges.txt)
+
+Dataset Modifications ("None" if unchanged): See [DataChanges.txt](DataChanges.txt)
+
+Result Analysis: The trendline in the graphs is actually a linear trendline which is curved due to the logarithmic scale. Although there are a few outliers on the upper end of the graphs for shuffled and reversed runtimes, the graphs mostly follow that linear trendline. This lines up with what we know about hash tables because they have constant insert, remove, and search times, and we were doing 3*numLines operations each time we gathered a data point. The outliers at the upper end of the graphs was likely due to lag from my computer because I was opening the configurations menu as the previous configuration was running.
 
 ## Submission:
 
